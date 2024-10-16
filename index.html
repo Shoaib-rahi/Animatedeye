@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<style>
+  *{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+  body{
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+   
+    background:linear-gradient(45deg ,rgb(148, 148, 216),rgb(202, 146, 146)) ;
+  }
+  .eyes{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  .face{
+    width: 600px;
+    height: 500px;
+    background-color: white;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+   gap: 30px;
+    box-shadow: rgba(0,0,0,0.2)0px 5px 15px;
+  }
+  .eye{
+    width: 250px;
+    height: 250px;
+    border-radius: 50%;
+    background-color: white;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    gap: 10px;
+    box-shadow: 0 0 20px 0 rgba(0,0,0,0.2);
+    overflow: hidden;
+  }
+  .pupil{
+    width: 50px;
+    height: 50px;
+    background-color: black;
+    border-radius: 50%;
+    box-shadow: 0 0 10px  0 black;
+  }
+</style>
+<body>
+
+
+
+<div class="center-div">
+    <div class="face">
+        <div class="eyes">
+            <div class="eye">
+                <div class="pupil"></div>
+            </div>
+            <div class="eye">
+                <div class="pupil"></div>
+            </div>
+        </div>
+    </div>
+</div>
+
+    <script>
+
+let pupils = document.getElementsByClassName("pupil");
+
+let pupilsArray = Array.from(pupils);
+// pupils movment
+
+let puiplStartPoint = -100;
+let pupilsRange = 200;
+
+    let mousestartvalue = 0;
+   let  mouseXendposition = window.innerWidth ;
+   let  mouseXposition = 0;
+   let fracXval = 0
+
+
+   let  mouseYendposition = window.innerHeight;
+   let  mouseYposition = 0;
+   let fracYval = 0
+ 
+   let mouseXRange = mouseXendposition - mousestartvalue;
+
+function chekcmousemovement(event){
+mouseXposition = event.x - mousestartvalue;
+
+fracXval = mouseXposition / mouseXRange;
+
+mouseYposition = event.y;
+fracYval = mouseYposition / mouseYendposition;
+
+let pupilsXCurrPosition =puiplStartPoint + ( fracXval * pupilsRange);
+let pupilsYCurrPosition =puiplStartPoint + ( fracYval * pupilsRange);
+
+pupilsArray.forEach((currElem) => {
+    currElem.style.transform = `translate(${pupilsXCurrPosition}px , ${pupilsYCurrPosition}px  ) `
+})
+}
+
+
+
+ window.addEventListener("mousemove",chekcmousemovement)
+     
+
+   
+    </script>
+</body>
+</html>
